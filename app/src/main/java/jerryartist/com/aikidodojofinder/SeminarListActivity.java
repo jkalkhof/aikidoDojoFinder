@@ -36,6 +36,7 @@ public class SeminarListActivity extends Activity
         implements SeminarListFragment.Callbacks {
 
     final static String TAG = "SeminarListActivity";
+    private static boolean feedInitialized = false;
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -64,9 +65,12 @@ public class SeminarListActivity extends Activity
 
         // TODO: If exposing deep links into your app, handle intents here.
 
-        String[] urlStr = {"http://www.aikiweb.com/rss/seminars.rdf?format=RSS2.0"};
 
-        fetchRSS(urlStr);
+
+        if (!feedInitialized) {
+            String[] urlStr = {"http://www.aikiweb.com/rss/seminars.rdf?format=RSS2.0"};
+            fetchRSS(urlStr);
+        }
     }
 
     void fetchRSS(String[] uris)
@@ -88,6 +92,8 @@ public class SeminarListActivity extends Activity
                     Log.v(TAG, "Exception: " + ex1.getMessage());
                 }
             }
+
+            feedInitialized = true;
         } catch (InterruptedException ex2) {
             Log.v(TAG, "Exception: " + ex2.getMessage());
         }

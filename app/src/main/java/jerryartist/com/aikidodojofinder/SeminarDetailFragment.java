@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 
@@ -22,6 +23,8 @@ public class SeminarDetailFragment extends Fragment {
      * represents.
      */
     public static final String ARG_ITEM_ID = "item_id";
+
+    private static WebView webView = null;
 
     /**
      * The content this fragment is presenting.
@@ -55,6 +58,11 @@ public class SeminarDetailFragment extends Fragment {
         // Show the content as text in a TextView.
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.seminar_detail)).setText(mItem.content);
+
+            webView = (WebView) rootView.findViewById(R.id.webView);
+            webView.loadData(mItem.content, "text/html", null);
+
+
         }
 
         return rootView;
