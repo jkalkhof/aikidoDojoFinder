@@ -39,8 +39,12 @@ public class SeminarDetailActivity extends Activity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(SeminarDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(SeminarDetailFragment.ARG_ITEM_ID));
+
+            // use int as bundle arguments, not string!
+            // this bug only shows up on single panel view on phones, not two panel view on tablet?
+            arguments.putInt(SeminarDetailFragment.ARG_ITEM_ID,
+                    getIntent().getIntExtra(SeminarDetailFragment.ARG_ITEM_ID,0));
+
             SeminarDetailFragment fragment = new SeminarDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()

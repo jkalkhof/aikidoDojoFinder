@@ -126,6 +126,8 @@ public class SeminarListActivity extends Activity
      @Override
      public void onItemSelected(Integer id) {
          if (mTwoPane) {
+             Log.d(TAG, "SeminarListActivity: onItemSelected(twoPane): " + id);
+
              // In two-pane mode, show the detail view in this activity by
              // adding or replacing the detail fragment using a
              // fragment transaction.
@@ -139,6 +141,8 @@ public class SeminarListActivity extends Activity
                      .commit();
 
          } else {
+             Log.d(TAG, "SeminarListActivity: onItemSelected: " + id);
+
              // In single-pane mode, simply start the detail activity
              // for the selected item ID.
              Intent detailIntent = new Intent(this, SeminarDetailActivity.class);
